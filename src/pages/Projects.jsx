@@ -1,52 +1,69 @@
-import React, { useEffect } from 'react';
-import { Grid, Container, Typography } from '@mui/material';
-import { usePageTitle } from '../contexts/PageTitleContext';
-import ProjectCard from '../components/ProjectCard';
-
-const projectData = [
-  {
-    title: 'React Portfolio',
-    description: 'My personal website built with React and Material UI.',
-    image: '/assets/portfolio-screenshot.jpg',
-    repoLink: 'https://github.com/AhmadHassan17/react-css-portfolio',
-    demoLink: 'https://ahmadhassan.dev',
-  },
-  {
-    title: 'Todo App',
-    description: 'A simple todo app with hooks and local storage.',
-    image: '/assets/todo.jpg',
-    repoLink: 'https://github.com/AhmadHassan17/todo-app',
-    demoLink: 'https://ahmadtodos.vercel.app',
-  },
-  {
-    title: 'Weather Dashboard',
-    description: 'Weather forecast using OpenWeatherMap API.',
-    image: '/assets/weather.jpg',
-    repoLink: 'https://github.com/AhmadHassan17/weather-dashboard',
-    demoLink: 'https://weather.ahmadhassan.dev',
-  },
-];
+import React from 'react';
+import './Projects.css'; // Create this CSS file or move styles from projects.css
+import portImage from '../assets/images/port.webp';
+import gameImage from '../assets/images/game.jpeg';
+import databaseImage from '../assets/images/database.jpeg';
+import chessImage from '../assets/images/chess.jpeg';
+import libraryImage from '../assets/images/library.webp';
+import snakeImage from '../assets/images/snake.jpg';
 
 const Projects = () => {
-  const { setTitle } = usePageTitle();
-
-  useEffect(() => {
-    setTitle('Projects');
-  }, [setTitle]);
+  const projectData = [
+    {
+      title: 'Portfolio Website',
+      image: portImage,
+      description: 'A modern, responsive portfolio website with a clean and playful design.',
+    },
+    {
+      title: 'Survival Game',
+      image: gameImage,
+      description: 'A 2D game built with C# and Unity, featuring custom game mechanics.',
+    },
+    {
+      title: 'Online Appointment Booking System',
+      image: databaseImage,
+      description: 'A well-structured database system for a university project with SQL and normalization.',
+    },
+    {
+      title: 'Chess Game',
+      image: chessImage,
+      description: 'A 2D platformer game built with C# and Unity, featuring custom game mechanics.',
+    },
+    {
+      title: 'Library Management System',
+      image: libraryImage,
+      description: 'An efficient management system designed with SQL and UI principles.',
+    },
+    {
+      title: 'Snake Game',
+      image: snakeImage,
+      description: 'A retro-inspired 2D game created in Unity with real-time collision handling.',
+    },
+  ];
 
   return (
-    <Container sx={{ mt: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        My Projects
-      </Typography>
-      <Grid container spacing={2}>
+    <section className="projects-section container py-5">
+      <h2 className="section-title text-center mb-5">
+        My <span>Projects</span>
+      </h2>
+      <div className="row">
         {projectData.map((project, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <ProjectCard {...project} />
-          </Grid>
+          <div className="col-md-4 mb-4" key={index}>
+            <div className="card project-card shadow-sm h-100">
+              <img
+                src={project.image}
+                className="card-img-top"
+                alt={project.title}
+              />
+              <div className="card-body">
+                <h5 className="card-title">{project.title}</h5>
+                <p className="card-text">{project.description}</p>
+              </div>
+            </div>
+          </div>
         ))}
-      </Grid>
-    </Container>
+      </div>
+    </section>
   );
 };
 
